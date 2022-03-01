@@ -18,17 +18,14 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
 
-    @staticmethod
     def do_quit(self, line):
         """(quit): command that exit the program"""
         return True
 
-    @staticmethod
     def do_EOF(self, line):
         """(EOF): signal that exit the program"""
         return True
 
-    @staticmethod
     def emptyline(self):
         """Do anything"""
         pass
