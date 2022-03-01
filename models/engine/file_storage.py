@@ -4,6 +4,7 @@ This module defines the class FileStorage.
 """
 import json
 import os
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -32,19 +33,20 @@ class FileStorage:
 
     def save(self):
         """
-        This method serializes __object to the JSON file.
+        This method serializes __object in dict to the JSON file.
         """
         new_dict = {}
         for key, value in FileStorage.__objects.items():
             new_dict[key] = value.to_dict()
         with open(FileStorage.__file_path, 'w', encoding='utf-8') as f:
             json.dump(new_dict, f)
-"""
+
     def reload(self):
-        
-        This method deserializes the JSON file to __object.
-     
+        """
+         This method deserializes the JSON file to __object.
+        """
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
-"""
+                my_obj_dict = json.load(f)
+                for key, value in my_obj_dict.items():
+                    FileStorage.__objects[key] = BaseModel(**value)
