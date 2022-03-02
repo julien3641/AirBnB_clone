@@ -39,12 +39,13 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """create command to create a new instance
         """
+        my_list = line.split(' ')
         if line == "":
             print("** class name missing **")
-        elif line not in self.list_class:
+        elif my_list[0] not in HBNBCommand.list_class:
             print("** class doesn't exist **")
         else:
-            var = BaseModel()
+            var = eval(my_list[0])()
             var.save()
             print(var.id)
 
@@ -52,51 +53,53 @@ class HBNBCommand(cmd.Cmd):
         """show command to print the string representation of an instance
         """
         my_list = line.split(' ')
-        key = "{}.{}".format(my_list[0], my_list[1])
-
         if line == "":
             print("** class name missing **")
-        elif my_list[0] not in self.list_class:
+        elif my_list[0] not in HBNBCommand.list_class:
             print("** class doesn't exist **")
         elif len(my_list) < 2:
             print("** instance id missing **")
-        elif key not in models.storage.all():
-            print("** no instance found **")
         else:
-            print(models.storage.all()[key])
+            my_dict = models.storage.all()
+            key = "{}.{}".format(my_list[0], my_list[1])
+            if key in my_dict:
+                print(my_dict[key])
+            else:
+                print("** no instance found **")
 
     def do_destroy(self, line):
         """destroy command to delete an instance
         """
         my_list = line.split(' ')
-        key = "{}.{}".format(my_list[0], my_list[1])
         if line == "":
             print("** class name missing **")
         elif my_list[0] not in self.list_class:
             print("** class doesn't exist **")
         elif len(my_list) < 2:
             print("** instance id missing **")
-        elif key not in models.storage.all():
-            print("** no instance found **")
         else:
-            del models.storage.all()[key]
-            models.storage.save()
-
-    def do_update(self, line):
-        my_list = line.split(' ')
+            my_dict = models.storage.all()
+            key = "{}.{}".format(my_list[0], my_list[1])
+            if key in my_dict:
+                del my_dict[key]
+                models.storage.save()
+            else:
+                print("** no instance found **")
 
     def do_all(self, line):
         """all command to print all string representation of all instance
         """
         my_list = line.split(' ')
-        if line == "" or my_list[0] in self.list_class:
+        if line == "" or my_list[0] in HBNBCommand.list_class:
             my_list_str = []
             my_str = models.storage.all().items()
             for key, value in my_str:
-                my_list_str.append(str(value))
+                if line == "" or type(value) is eval(my_list[0]):
+                    my_list_str.append(str(value))
             print("{}".format(my_list_str))
-        elif my_list[0] not in self.list_class:
+        else:
             print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
