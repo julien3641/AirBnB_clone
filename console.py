@@ -4,6 +4,7 @@ This module contains the entry point of the command interpreter.
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
@@ -19,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         - prompt (str)
     """
     prompt = "(hbnb) "
-    list_class = ['BaseModel']
+    list_class = ['BaseModel', 'User']
 
     def do_quit(self):
         """quit command to exit the program
