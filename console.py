@@ -3,9 +3,15 @@
 This module contains the entry point of the command interpreter.
 """
 import cmd
+import models
+import shlex
 from models.base_model import BaseModel
 from models.user import User
-import models
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,17 +26,17 @@ class HBNBCommand(cmd.Cmd):
         - prompt (str)
     """
     prompt = "(hbnb) "
-    list_class = ['BaseModel', 'User']
+    list_class = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
-    def do_quit(self):
+    def do_quit(self, line):
         """quit command to exit the program
         """
-        return True
+        quit()
 
-    def do_EOF(self):
+    def do_EOF(self, line):
         """EOF signal to exit the program
         """
-        return True
+        quit()
 
     def emptyline(self):
         """Do anything
@@ -100,6 +106,29 @@ class HBNBCommand(cmd.Cmd):
             print("{}".format(my_list_str))
         else:
             print("** class doesn't exist **")
+
+    def do_update(self, line):
+        """update command to update an instance
+        """
+        my_list = shlex.split(line)
+        if line == "":
+            print("** class name missing **")
+        elif my_list[0] not in HBNBCommand.list_class:
+            print("** class doesn't exist **")
+        elif len(my_list) < 2:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(my_list[0], my_list[1])
+            my_dict = models.storage.all().get(key)
+            if my_dict is None:
+                print("** no instance found **")
+            elif len(my_list) < 3:
+                print("** attribute name missing **")
+            elif len(my_list) < 4:
+                print("** value missing **")
+            else:
+                setattr(my_dict, my_list[2], my_list[3])
+                models.storage.save()
 
 
 if __name__ == '__main__':
