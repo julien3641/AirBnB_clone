@@ -151,7 +151,7 @@ class TestSaveMethod(unittest.TestCase):
         s1.save()
         self.assertGreater(os.path.getsize("file.json"), 2)
 
-    def test_save_after_sel(self):
+    def test_save_after_del(self):
         """Test if the save method fills the json file"""
         dico = models.storage.all().copy()
         for k, v in dico.items():

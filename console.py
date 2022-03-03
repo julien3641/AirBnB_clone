@@ -5,6 +5,7 @@ This module contains the entry point of the command interpreter.
 import cmd
 import models
 import shlex
+from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -128,6 +129,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             else:
                 setattr(my_dict, my_list[2], my_list[3])
+                setattr(my_dict, 'updated_at', datetime.now())
                 models.storage.save()
 
 
