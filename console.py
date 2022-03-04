@@ -47,7 +47,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
-        """create command to create a new instance
+        """Usage: create <class name> OR <class name>.create()
+Def: create command to create a new instance
         """
         my_list = line.split(' ')
         if line == "":
@@ -60,7 +61,8 @@ class HBNBCommand(cmd.Cmd):
             print(var.id)
 
     def do_show(self, line):
-        """show command to print the string representation of an instance
+        """Usage: show <class name> <id> OR <class name>.show(<id>)
+Def: show command to print the string representation of an instance
         """
         my_list = line.split(' ')
         if line == "":
@@ -78,7 +80,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, line):
-        """destroy command to delete an instance
+        """Usage: destroy <class name> OR <class name>.destroy(<id>)
+Def: destroy command to delete an instance
         """
         my_list = line.split(' ')
         if line == "":
@@ -97,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, line):
-        """Usage: all or all <class> or <class>.all()
+        """Usage: all or all <class> OR <class>.all()
 Def: all command to print all string representation of all instance
         """
         my_list = line.split(' ')
@@ -112,7 +115,8 @@ Def: all command to print all string representation of all instance
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Usage: update <class name> <id> <attribute name> "<attribute value>"
+        """Usage 1: update <class name> <id> <attribute name> "<attribute value>"
+Usage 2: <class name>.update(<id>, <attribute name>, <attribute value>)
 Def: update command to create or update an instance
         """
         my_list = shlex.split(line)
@@ -137,7 +141,8 @@ Def: update command to create or update an instance
                 models.storage.save()
 
     def do_count(self, line):
-        """Counts the instances of a class.
+        """Usage: count <class name> OR <class name>.count()
+Def: count command to count the instances of a class
         """
         my_list = line.split(' ')
         if line == "":
@@ -153,7 +158,7 @@ Def: update command to create or update an instance
             print(len(my_list_dict))
 
     def default(self, line):
-        """Default command when the prefix is not recognized
+        """Default method when the command is not recognized
         """
         list_method = {
             "create": self.do_create,
