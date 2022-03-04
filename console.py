@@ -184,9 +184,8 @@ Def: update command to create or update an instance
                                                     my_list_cmd[1])
                         return list_method[my_list_cmd[0]](result_all)
 
-        elif match_1 is None:
-            print("*** Unknown syntax: {}".format(line))
-            return
+        print("*** Unknown syntax: {}".format(line))
+        return
 
 
 if __name__ == '__main__':
