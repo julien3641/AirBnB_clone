@@ -2,9 +2,7 @@
 
 ![AirBnB clone logo.](/img/logo_airbnb.png "AirBnB Clone logo.")
 
-##Introduction
-
-![first step](/img/intro1.png "First step")
+## Introduction
 
 This project is the first step of a big one witch is to clone the AirBnB full web application.
  * This first step is in python. We will start by implement the parent class called BaseModel.
@@ -12,8 +10,10 @@ This project is the first step of a big one witch is to clone the AirBnB full we
  * During this project, we created some classes that inherit from BaseModel such as : User, State, City, Place, review, state, amenity...
  * Create the first abstracted storage engine of the project: File storage.
  * And to finish create the unittest to validate all the classes and storage processes
+ 
+![first step](/img/intro1.png "First step")
 
-##Definitions
+## Definitions
 
 First lets have some few definitions to help understand the project :
 
@@ -45,7 +45,7 @@ Kwargs allow you to pass keyword arguments to a function. They are used when you
 
 Keyword arguments (or named arguments) are values that, when passed into a function, are identifiable by specific parameter names. A keyword argument is preceded by a parameter and the assignment operator, = . Keyword arguments can be likened to dictionaries in that they map a value to a keyword.
 
-##Use the console
+## Use the console
 
 The (hbnb) Airbnb Clone can be run both in interactive and non-interactive mode.
 To run the console in non-interactive mode, you can use the following command :
@@ -87,7 +87,7 @@ EOF  help  quit
 $
 ```
 
-##Main commands
+## Main commands
 
 
 | COMMAND after the (hbnb)                               |                 DESCRIPTION                  |
@@ -101,7 +101,7 @@ $
 | all + class                                            |     To show all the instances of a class     |
  | update + class + id + attribute name + attribute value | To create or update the attribute of a class |
 
-##BaseModel
+## BaseModel
 
 The BaseModel class is the parent of all the classes : 
 
@@ -114,7 +114,7 @@ The BaseModel class is the parent of all the classes :
 
 * The _to_dict method_ returns a dictionary containing all the keys and values of the instance.
 
-##Other classes
+## Other classes
 All the classes listed bellow inherits from BaseModel :
 
 | class       |                                                                   Attributes                                                                   |
@@ -131,7 +131,7 @@ All the classes listed bellow inherits from BaseModel :
 
 
 
-##Filestorage
+## Filestorage
 
 This file is composed of methods that are used by the console :
 * The _all method_ display the dictionary view of objects.
@@ -142,7 +142,7 @@ This file is composed of methods that are used by the console :
 
 * The _reload method_ deserialize the JSON file to object. In other words, bring the data in the file.json and change it to object.
 
-##Console
+## Console
 
 The HBNBCommand class is created to implement the prompt. The option "do" at the beginning of the method define the action. So do_quit defined the command to quit the prompt, the EOF do the same with the signal.
 
@@ -156,7 +156,7 @@ The HBNBCommand class is created to implement the prompt. The option "do" at the
 
 * The _method do_update_ have to be exactly "update + class + id + attribute name + attribute value ". This method is useful to update an instance. If the instance already exist, it updates the instance and the time. It the instance doesn't exist it create it.
 
-##Python Unit Tests
+## Python Unit Tests
 
 We have done some tests for our classes and methods. Tests are made to make sure our code display the result and the outputs expected.
 
