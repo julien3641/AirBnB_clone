@@ -1,5 +1,5 @@
 # AirBnB_clone
-https://github.com/elodieriou/AirBnB_clone
+
 ![AirBnB clone logo.](/img/logo_airbnb.png "AirBnB Clone logo.")
 
 ## Introduction
@@ -25,29 +25,29 @@ A Python package is a folder containing modules and maybe other folders that the
 
 The Cmd instance or subclass instance is a line-oriented interpreter framework. There is no good reason to instantiate Cmd itself; rather, it’s useful as a superclass of an interpreter class you define yourself in order to inherit Cmd’s methods and encapsulate action methods.
 
-* __How to manage datetime ?__
+* __How to manage `datetime` ?__
 
 To manage datetime in python, you have to import the module named datetime. This module allow you to deal with the hours or the dates
 
-* __What is a UUID what can it be used for?__
+* __What is a `UUID` what can it be used for?__
 
 UUIDs are generally used for identifying information that needs to be unique within a system or a network.
 
-* __What is *args and how to use it ?__
+* __What is `*args` and how to use it ?__
 
-The special syntax "*args" in function definitions in python is used to pass a variable number of arguments to a function.
+The special syntax `*args` in function definitions in python is used to pass a variable number of arguments to a function. But we won't use `*args` in this project.
 
-* __What is **kwargs and how to use it ?__
+* __What is `**kwargs` and how to use it ?__
 
 Kwargs allow you to pass keyword arguments to a function. They are used when you are not sure of the number of keyword arguments that will be passed in the function. Kwargs can be used for unpacking dictionary key, value pairs. This is done using the double asterisk notation ( ** ).
 
 * __How to handle named arguments in a function ?__
 
-Keyword arguments (or named arguments) are values that, when passed into a function, are identifiable by specific parameter names. A keyword argument is preceded by a parameter and the assignment operator, = . Keyword arguments can be likened to dictionaries in that they map a value to a keyword.
+Keyword arguments (or named arguments) are values that, when passed into a function, are identifiable by specific parameter names. A keyword argument is preceded by a parameter and the assignment operator `=` . Keyword arguments can be likened to dictionaries in that they map a value to a keyword.
 
 ## Use the console
 
-The (hbnb) Airbnb Clone can be run both in interactive and non-interactive mode.
+The `(hbnb)` Airbnb Clone can be run both in interactive and non-interactive mode.
 To run the console in non-interactive mode, you can use the following command :
 
 ```
@@ -89,7 +89,6 @@ $
 
 ## Main commands
 
-
 | COMMAND after the (hbnb)                               |                 DESCRIPTION                  |
 |--------------------------------------------------------|:--------------------------------------------:|
 | quit                                                   |             To quit the console              |
@@ -106,14 +105,14 @@ $
 
 The BaseModel class is the parent of all the classes : 
 
-* The __init method__ defines the common attributes for all the class that inrherite from that one. We call that the constructor method.
+* The `init method` defines the common attributes for all the class that inrherite from that one. We call that the constructor method.
 
-* The __str method__ is the method that defines the good output format as a string.
+* The `str method` is the method that defines the good output format as a string.
 
-* The __save method__ is useful to updates the public instance attribute 'updated_at' with
+* The `save method` is useful to updates the public instance attribute 'updated_at' with
         the current datetime.
 
-* The __to_dict method__ returns a dictionary containing all the keys and values of the instance.
+* The `to_dict method` returns a dictionary containing all the keys and values of the instance.
 
 ## [Other classes](https://github.com/elodieriou/AirBnB_clone/tree/main/models)
 All the classes listed bellow inherits from BaseModel :
@@ -128,51 +127,47 @@ All the classes listed bellow inherits from BaseModel :
 | [Amenity](https://github.com/elodieriou/AirBnB_clone/blob/main/models/amenity.py) |name                                     | This class retrieve information about the future amenity  |
 
 
-
-
-
-
 ## [Filestorage](https://github.com/elodieriou/AirBnB_clone/blob/main/models/engine/file_storage.py)
 
 This file is composed of methods that are used by the console :
-* The __all method__ display the dictionary view of objects.
+* The `all method` display the dictionary view of objects.
 
-* The __new method__ sets a new instance with the class name and a new id for the object.
+* The `new method` sets a new instance with the class name and a new id for the object.
 
-* The __save method__ serialize the object in dictionary format to the JSON file.
+* The `save method` serialize the object in dictionary format to the JSON file.
 
-* The __reload method__ deserialize the JSON file to object. In other words, bring the data in the file.json and change it to object.
+* The `reload method` deserialize the JSON file to object. In other words, bring the data in the `file.json` and change it to object.
 
 ## [Console](https://github.com/elodieriou/AirBnB_clone/blob/main/console.py)
 
-The HBNBCommand class is created to implement the prompt. The option "do" at the beginning of the method define the action. So do_quit defined the command to quit the prompt, the EOF do the same with the signal.
+The HBNBCommand class is created to implement the prompt. The option `do` at the beginning of the method define the action. So `do_quit` defined the command to quit the prompt, the `EOF` command does the same with the signal.
 
-* The __command do_create__ is to create a new instance and tell the user if there is a missing argument or if the class called doesn't exist. If the argument are passed on the good way, the instance is created and saved.
+* The `command do_create` is to create a new instance and tell the user if there is a missing argument or if the class called doesn't exist. If the argument are passed on the good way, the instance is created and saved.
 ```commandline
 Usage: create <class name> OR <class name>.create()
 ```
-* The __command do_show__ is to show a string representation of an instance. This mean that when you type : "show User id" on the good way it will display the information of this user. If a argument is missing it will display an error message.
+* The `command do_show` is to show a string representation of an instance. This mean that when you type : "show User id" on the good way it will display the information of this user. If a argument is missing it will display an error message.
 ```commandline
 Usage: show <class name> <id> OR <class name>.show(<id>)
 ```
-* The __command do_destroy__ works on the same way as "show" but the objective is to remove an instance.
+* The `command do_destroy` works on the same way as "show" but the objective is to remove an instance.
 ```commandline
 Usage: destroy <class name> OR <class name>.destroy(<id>)
 ```
-* The __command do_all__ displays in the prompt the string representation of all the instance saved.
+* The `command do_all` displays in the prompt the string representation of all the instance saved.
 ```commandline
 Usage: all OR all <class name> OR <class name>.all()
 ```
-* The __command do_update__ is useful to update an instance. If the instance already exist, it updates the instance and the datetime. If the instance doesn't exist, it creates it.
+* The `command do_update` is useful to update an instance. If the instance already exist, it updates the instance and the datetime. If the instance doesn't exist, it creates it.
 ```commandline
 Usage: update <class name> <id> <attribute name> "<attribute value>" 
 Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
 ```
-* The __command do_count__ counts the number of instance for each classes.
+* The `command do_count` counts the number of instance for each class.
 ```commandline
 Usage: count <class name> OR <class name>.count()
 ```
-* The __method default__ is called when the command is not recognized. If the input line cannot be overrided, an error message is printed and returns. 
+* The `method default` is called when the command is not recognized. If the input line cannot be overrided, an error message is printed and returns. 
 ```commandline
 $ input
 (hbnb) User.count()
@@ -185,7 +180,7 @@ $ method default switch by
 
 We have done some tests for our classes and methods. Tests are made to make sure our code display the result and the outputs expected.
 
-The command to Display the results of the tests in interactive mode is :
+The command to display the results of the tests in interactive mode is :
 ```
 $ python3 -m unittest discover tests
 ```
