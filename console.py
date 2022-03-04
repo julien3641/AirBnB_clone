@@ -5,6 +5,7 @@ This module contains the entry point of the command interpreter.
 import cmd
 import models
 import shlex
+import re
 from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
@@ -27,7 +28,8 @@ class HBNBCommand(cmd.Cmd):
         - prompt (str)
     """
     prompt = "(hbnb) "
-    list_class = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
+    list_class = ['BaseModel', 'User', 'Place',
+                  'State', 'City', 'Amenity', 'Review']
 
     def do_quit(self, line):
         """quit command to exit the program
@@ -95,13 +97,14 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, line):
-        """all command to print all string representation of all instance
+        """Usage: all or all <class> or <class>.all()
+Def: all command to print all string representation of all instance
         """
         my_list = line.split(' ')
         if line == "" or my_list[0] in HBNBCommand.list_class:
             my_list_str = []
-            my_str = models.storage.all().items()
-            for key, value in my_str:
+            my_str = models.storage.all()
+            for key, value in my_str.items():
                 if line == "" or type(value) is eval(my_list[0]):
                     my_list_str.append(str(value))
             print("{}".format(my_list_str))
@@ -109,7 +112,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """update command to update an instance
+        """Usage: update <class name> <id> <attribute name> "<attribute value>"
+Def: update command to create or update an instance
         """
         my_list = shlex.split(line)
         if line == "":
@@ -131,6 +135,58 @@ class HBNBCommand(cmd.Cmd):
                 setattr(my_dict, my_list[2], my_list[3])
                 setattr(my_dict, 'updated_at', datetime.now())
                 models.storage.save()
+
+    def do_count(self, line):
+        """Counts the instances of a class.
+        """
+        my_list = line.split(' ')
+        if line == "":
+            print("** class name missing **")
+        elif my_list[0] not in HBNBCommand.list_class:
+            print("** class doesn't exist **")
+        else:
+            my_list_dict = []
+            my_dict = models.storage.all()
+            for value in my_dict:
+                if value.startswith(my_list[0] + '.'):
+                    my_list_dict.append(value)
+            print(len(my_list_dict))
+
+    def default(self, line):
+        """Default command when the prefix is not recognized
+        """
+        list_method = {
+            "create": self.do_create,
+            "show": self.do_show,
+            "destroy": self.do_destroy,
+            "all": self.do_all,
+            "update": self.do_update,
+            "count": self.do_count
+        }
+        match_1 = re.search(r"\.", line)
+        if match_1 is not None:
+            my_list_line = [line[:match_1.span()[0]], line[match_1.span()[1]:]]
+
+            match_2 = re.search(r"\((.*?)\)", my_list_line[1])
+            if match_2 is not None:
+                my_list_cmd = [my_list_line[1][:match_2.span()[0]],
+                               match_2.group()[1:-1]]
+
+                if my_list_cmd[0] in list_method.keys():
+                    if my_list_cmd[0] == "update":
+                        replace = my_list_cmd[1].replace(",", "")
+                        result_update = "{} {}".format(my_list_line[0],
+                                                       replace)
+                        return list_method[my_list_cmd[0]](result_update)
+
+                    elif my_list_cmd[0] != "update":
+                        result_all = "{} {}".format(my_list_line[0],
+                                                    my_list_cmd[1])
+                        return list_method[my_list_cmd[0]](result_all)
+
+        elif match_1 is None:
+            print("*** Unknown syntax: {}".format(line))
+            return
 
 
 if __name__ == '__main__':
