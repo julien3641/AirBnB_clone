@@ -1,5 +1,5 @@
 # AirBnB_clone
-
+https://github.com/elodieriou/AirBnB_clone
 ![AirBnB clone logo.](/img/logo_airbnb.png "AirBnB Clone logo.")
 
 ## Introduction
@@ -101,7 +101,7 @@ $
 | all + class                                            |     To show all the instances of a class     |
  | update + class + id + attribute name + attribute value | To create or update the attribute of a class |
 
-## BaseModel
+## [BaseModel](https://github.com/elodieriou/AirBnB_clone/blob/main/models/base_model.py)
 
 The BaseModel class is the parent of all the classes : 
 
@@ -114,24 +114,24 @@ The BaseModel class is the parent of all the classes :
 
 * The _to_dict method_ returns a dictionary containing all the keys and values of the instance.
 
-## Other classes
+## [Other classes](https://github.com/elodieriou/AirBnB_clone/tree/main/models)
 All the classes listed bellow inherits from BaseModel :
 
-| class       |                                                                   Attributes                                                                   |
-|-------------|:----------------------------------------------------------------------------------------------------------------------------------------------:|
-| User        |                                                   email + password + first_name + last_name                                                    |
-| State       |                                                                      name                                                                      |
-| City        |                                                                state_id + name                                                                 |
-| Place       | city_id + user_id + name + description<br/>number_rooms + number_bathrooms + max_guest<br/>price_by_night + latitude + longitude + amenity_ids |
-| Review      |                                                           place_id + user_id + text                                                            |
-| Amenity     |                                                                      name                                                                      |
+| class       | Attributes | Description |
+|-------------|:----------:|:-----------:|
+| [User](https://github.com/elodieriou/AirBnB_clone/blob/main/models/user.py)       |email + password + first_name + last_name| This class is about user information, it retrieve main information about the future user  |
+| [State](https://github.com/elodieriou/AirBnB_clone/blob/main/models/state.py)     |name                                     | This  class retrieve information about for the future state of the future location |
+|[City](https://github.com/elodieriou/AirBnB_clone/blob/main/models/state.py)       |state_id + name                          |  This class retrieve more precise information about the geographic position of future location |
+| [Place](https://github.com/elodieriou/AirBnB_clone/blob/main/models/place.py)     | city_id + user_id + name + description </br> number_rooms + number_bathrooms + max_guest </br> price_by_night + latitude + longitude + amenity_ids | This class retrieve all information about the future location, all important information like the number of room and the equipment inside the location  |
+| [Review](https://github.com/elodieriou/AirBnB_clone/blob/main/models/review.py)   |place_id + user_id + text                | This class retrieve a review of the future place with information of the user that post the review  |
+| [Amenity](https://github.com/elodieriou/AirBnB_clone/blob/main/models/amenity.py) |name                                     | This class retrieve information about the future amenity  |
 
 
 
 
 
 
-## Filestorage
+## [Filestorage](https://github.com/elodieriou/AirBnB_clone/blob/main/models/engine/file_storage.py)
 
 This file is composed of methods that are used by the console :
 * The _all method_ display the dictionary view of objects.
@@ -142,7 +142,7 @@ This file is composed of methods that are used by the console :
 
 * The _reload method_ deserialize the JSON file to object. In other words, bring the data in the file.json and change it to object.
 
-## Console
+## [Console](https://github.com/elodieriou/AirBnB_clone/blob/main/console.py)
 
 The HBNBCommand class is created to implement the prompt. The option "do" at the beginning of the method define the action. So do_quit defined the command to quit the prompt, the EOF do the same with the signal.
 
@@ -156,7 +156,7 @@ The HBNBCommand class is created to implement the prompt. The option "do" at the
 
 * The _method do_update_ have to be exactly "update + class + id + attribute name + attribute value ". This method is useful to update an instance. If the instance already exist, it updates the instance and the time. It the instance doesn't exist it create it.
 
-## Python Unit Tests
+## [Python Unit Tests](https://github.com/elodieriou/AirBnB_clone/tree/main/tests/test_models)
 
 We have done some tests for our classes and methods. Tests are made to make sure our code display the result and the outputs expected.
 
