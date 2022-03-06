@@ -20,6 +20,17 @@ import uuid
 import os
 
 
+class TestAttributes(unittest.TestCase):
+    """
+    This class provides tests with attributes of the class FilesStorage
+    """
+    def test_attributes_assignement(self):
+        self.assertIn("_FileStorage__objects", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
+        self.assertIn("_FileStorage__file_path", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+
+
 class TestAllMethod(unittest.TestCase):
     """
     This class provides tests for the all method.
@@ -168,11 +179,6 @@ class TestSaveMethod(unittest.TestCase):
         models.storage.save()
         self.assertEqual(os.path.getsize("file.json"), 2)
 
-    def test_save_with_arg(self):
-        """test save with argument"""
-        with self.assertRaises(TypeError):
-            models.storage.save(None)
-
     def test_save_in(self):
         """Test if the keys are in the json file."""
         dico = models.storage.all().copy()
@@ -194,7 +200,7 @@ class TestSaveMethod(unittest.TestCase):
         a1.save()
         r1.save()
         text = ""
-        with open("file.json", "r") as f:
+        with open("file.json", "r", encoding="utf-8") as f:
             text = f.read()
             self.assertIn("BaseModel." + b1.id, text)
             self.assertIn("User." + u1.id, text)
@@ -221,20 +227,10 @@ class TestReloadMethod(unittest.TestCase):
         for k, v in dico.items():
             self.assertEqual(type(dico[k]), type(u1))
 
-    def test_attributes_assignement(self):
-        self.assertIn("_FileStorage__objects", FileStorage.__dict__)
-        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
-        self.assertIn("_FileStorage__file_path", FileStorage.__dict__)
-        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
-
-    def test_reload_with_arg(self):
-        """test reload with arg"""
-        with self.assertRaises(TypeError):
-            models.storage.reload("Holberton")
-
     def test_reload_file_no_exist(self):
         """test reload if file.json doesn't exist"""
-        self.assertRaises(FileNotFoundError, models.storage.reload())
+        with self.assertNotRaises(Exception):
+            models.storage.reload()
 
     def test_reload_in(self):
         """test if the keys are in storage.all()."""

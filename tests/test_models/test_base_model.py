@@ -112,6 +112,13 @@ class TestBaseModelSave(unittest.TestCase):
         obj.save()
         self.assertNotEqual(date1, date2)
 
+    def test_save_updates_file(self):
+        """test the information are really saved in the file"""
+        bm = BaseModel()
+        bm.save()
+        with open("file.json", "r", encoding="utf-8") as f:
+            self.assertIn("BaseModel." + bm.id, f.read())
+
 
 class TestBaseModelTodict(unittest.TestCase):
     """test the to_dict method"""
