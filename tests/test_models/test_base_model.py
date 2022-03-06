@@ -127,6 +127,11 @@ class TestBaseModelTodict(unittest.TestCase):
         bm = BaseModel()
         self.assertEqual(type(bm.__dict__), dict)
 
+    def test_compare_dictionary_type(self):
+        """test if our dictionary is same as the __dict__"""
+        bm = BaseModel()
+        self.assertEqual(type(bm.__dict__), type(bm.to_dict())
+
 
 if __name__ == '__main__':
     unittest.main()
