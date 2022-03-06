@@ -131,6 +131,13 @@ class TestBaseModelTodict(unittest.TestCase):
         """test if our dictionary is same as the __dict__"""
         bm = BaseModel()
         self.assertEqual(type(bm.__dict__), type(bm.to_dict()))
+    
+    def test_correct_keys(self):
+        bm = BaseModel()
+        self.assertIn("id", bm.to_dict())
+        self.assertIn("created_at", bm.to_dict())
+        self.assertIn("updated_at", bm.to_dict())
+        self.assertIn("__class__", bm.to_dict())
 
 
 if __name__ == '__main__':
