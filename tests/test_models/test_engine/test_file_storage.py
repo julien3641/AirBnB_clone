@@ -227,11 +227,6 @@ class TestReloadMethod(unittest.TestCase):
         for k, v in dico.items():
             self.assertEqual(type(dico[k]), type(u1))
 
-    def test_reload_file_no_exist(self):
-        """test reload if file.json doesn't exist"""
-        with self.assertNotRaises(Exception):
-            models.storage.reload()
-
     def test_reload_in(self):
         """test if the keys are in storage.all()."""
         dico = models.storage.all().copy()
