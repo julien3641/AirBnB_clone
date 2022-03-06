@@ -184,6 +184,12 @@ class TestReloadMethod(unittest.TestCase):
         dico = models.storage.all()
         for k, v in dico.items():
             self.assertEqual(type(dico[k]), type(u1))
+    
+    def test_attributes_assignement(self):
+        self.assertIn("_FileStorage__objects", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__objects, dict)
+        self.assertIn("_FileStorage__file_path", FileStorage.__dict__)
+        self.assertIsInstance(FileStorage._FileStorage__file_path, str)
 
 
 if __name__ == '__main__':
