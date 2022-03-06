@@ -13,7 +13,7 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """
-        This is the constructor method.
+        This is initialization of the base instance with args and kwargs.
         """
         mod = '%Y-%m-%dT%H:%M:%S.%f'
         if len(args) == 0 and len(kwargs) != 0:
@@ -32,7 +32,7 @@ class BaseModel:
 
     def __str__(self):
         """
-        THis method return the good format.
+        THis method return a readable string format of an instance.
         """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)

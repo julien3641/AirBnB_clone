@@ -115,7 +115,8 @@ Def: all command to print all string representation of all instance
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """Usage 1: update <class name> <id> <attribute name> "<attribute value>"
+        """Usage 1: update <class name> <id>
+            <attribute name> "<attribute value>"
 Usage 2: <class name>.update(<id>, <attribute name>, <attribute value>)
 Def: update command to create or update an instance
         """
