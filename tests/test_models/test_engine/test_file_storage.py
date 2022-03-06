@@ -168,6 +168,11 @@ class TestSaveMethod(unittest.TestCase):
         models.storage.save()
         self.assertEqual(os.path.getsize("file.json"), 2)
 
+    def test_save_with_arg(self):
+        """test save argument"""
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
+
 
 class TestReloadMethod(unittest.TestCase):
     """Class that tests the reload method"""
@@ -184,12 +189,17 @@ class TestReloadMethod(unittest.TestCase):
         dico = models.storage.all()
         for k, v in dico.items():
             self.assertEqual(type(dico[k]), type(u1))
-    
+
     def test_attributes_assignement(self):
         self.assertIn("_FileStorage__objects", FileStorage.__dict__)
         self.assertIsInstance(FileStorage._FileStorage__objects, dict)
         self.assertIn("_FileStorage__file_path", FileStorage.__dict__)
         self.assertIsInstance(FileStorage._FileStorage__file_path, str)
+
+    def test_reload_with_arg(self):
+        """test reload arg"""
+        with self.assertRaises(TypeError):
+            models.storage.reload("Holberton")
 
 
 if __name__ == '__main__':
