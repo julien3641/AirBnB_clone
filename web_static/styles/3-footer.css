@@ -1,7 +1,9 @@
 footer {
-    background-color:#00FF00;
+    background-color: white;
     height: 60px;
     width: 100%;
+    border-top-color: #CCCCCC;
+    border-top: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,4 +11,3 @@ footer {
     position: absolute;
     bottom: 0;
 }
-    
