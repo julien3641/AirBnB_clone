@@ -6,5 +6,6 @@
 body {
     padding: 0px;
     margin: 0px;
-    font: 14px #484848 Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font: 14px Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #484848
 }
