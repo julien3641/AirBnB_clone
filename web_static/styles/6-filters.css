@@ -59,6 +59,7 @@ h4 {
     list-style-type: none;
     visibility: hidden;
     padding: 20px 0px 20px 20px;
+    z-index: 1;
 }
 
 .locations:hover .popover{
