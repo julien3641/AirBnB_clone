@@ -10,3 +10,7 @@ body {
     font: 14px Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #484848
 }
+
+.filters h4{
+    font-weight: normal;
+}
