@@ -58,8 +58,9 @@ h4 {
     border-radius: 4px;
     list-style-type: none;
     visibility: hidden;
-    padding: 20px 0px 20px 20px;
+    padding: 20px 10px 20px 0px;
     z-index: 1;
+    position: relative;
 }
 
 .locations:hover .popover{
@@ -71,7 +72,14 @@ h4 {
 
 h2{
     font-size: 16px;
+    padding: 0px 0px 0px 20px;
 }
-li{
-    padding-left: 20px
+
+.filters .locations li {
+    margin: 6px auto 0px 0px;
+    list-style-type: none;
+}
+.filters .amenities li {
+    margin: 6px auto 0px 40px;
+    list-style-type: none;
 }
